@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#D6EAF8"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:textColor="@color/black"
+
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnEditMsg"
+            android:text="Sửa"
+            android:layout_width="0dp"
+            android:backgroundTint="#0000CC    "
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnDeleteMsg"
+            android:text="Xóa"
+            android:layout_width="0dp"
+            android:backgroundTint="#FF0000    "
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

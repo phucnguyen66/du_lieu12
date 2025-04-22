@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "426141856396",
+    "firebase_url": "https://calculations-ab5a2-default-rtdb.firebaseio.com",
+    "project_id": "calculations-ab5a2",
+    "storage_bucket": "calculations-ab5a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426141856396:android:23d03fe4567a8cc25781a9",
+        "android_client_info": {
+          "package_name": "com.example.bai_cuoi_ki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvmQGiIfsYz1wfp7tH_XHn5HcpumKM3hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426141856396:android:60a061865ab39c2d5781a9",
+        "android_client_info": {
+          "package_name": "com.example.du_lieu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvmQGiIfsYz1wfp7tH_XHn5HcpumKM3hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

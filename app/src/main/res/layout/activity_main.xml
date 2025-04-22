@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnBaiToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0000CC  "
+            android:textColor="@color/white"
+            android:text="Bài Toán Giải" />
+
+        <Button
+            android:id="@+id/btnBaiHinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0000CC    "
+            android:textColor="@color/white"
+
+            android:text="Bài hình" />
+
+        <Button
+            android:id="@+id/btnCalculations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0000CC  "
+            android:textColor="@color/white"
+
+            android:text="Bài Toán Cấp 2" />
+
+        <Button
+            android:id="@+id/btnBaiToanCap2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC  "
+            android:text="Bài Toán Giải cấp 2" />
+
+        <Button
+            android:id="@+id/btnBaiHinhCap2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC    "
+            android:text="Bài hình cấp 2" />
+
+        <Button
+            android:id="@+id/btnBaiToanCap3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC  "
+            android:text="Bài Toán Giải Cấp 3" />
+
+        <Button
+            android:id="@+id/btnCalculations2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC   "
+            android:text="Bài Toán Cấp 3" />
+
+        <Button
+            android:id="@+id/btnBaiHinhCap3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC    "
+            android:text="Bài hình cấp 3" />
+
+        <Button
+            android:id="@+id/btnUsers"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0000CC      "
+            android:text="Người dùng" />
+
+        <Button
+            android:id="@+id/btnKetQua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC      "
+            android:text="Kết quả" />
+
+        <Button
+            android:id="@+id/btnMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
+            android:backgroundTint="#0000CC    "
+            android:text="Dịch Vụ" />
+
+        <ImageView
+            android:id="@+id/imageBanner"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nen" />
+    </LinearLayout>
+
+</ScrollView>
