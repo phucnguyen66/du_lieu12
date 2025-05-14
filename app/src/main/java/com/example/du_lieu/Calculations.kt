@@ -24,6 +24,7 @@ class Calculations : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         baiHinhList = mutableListOf()
 
+
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         btnAdd.setOnClickListener {
             showDialogAddOrEdit(null)
@@ -31,16 +32,20 @@ class Calculations : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Lắng nghe sự thay đổi dữ liệu trong Firebase
+        // Lấy dữ liệu từ Firebase và xử lý
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 baiHinhList.clear()
                 for (data in snapshot.children) {
                     val item = data.getValue(BaiHinh::class.java)
-                    item?.id = data.key
+
+                    // Chuyển key và các trường dữ liệu từ Firebase thành kiểu Int
+                    item?.id = data.key?.toIntOrNull() ?: 0 // Chuyển key từ String sang Int
+                    item?.dapAn = item?.dapAn?.toString()?.toIntOrNull() ?: 0 // Chuyển dapAn thành Int
+                    item?.lop = item?.lop?.toString()?.toIntOrNull() ?: 0 // Chuyển lop thành Int
+
                     item?.let { baiHinhList.add(it) }
                 }
-                // Cập nhật adapter với danh sách các bài hình
                 recyclerView.adapter = BaiHinhAdapter(baiHinhList,
                     onEdit = { showDialogAddOrEdit(it) },
                     onDelete = { deleteItem(it) }
@@ -51,42 +56,40 @@ class Calculations : AppCompatActivity() {
         })
     }
 
-    // Hiển thị dialog để thêm hoặc chỉnh sửa bài hình
     private fun showDialogAddOrEdit(baiHinh: BaiHinh?) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_edit, null)
-        val edtExpression = dialogView.findViewById<EditText>(R.id.edtCauHoi)
-        val edtResult = dialogView.findViewById<EditText>(R.id.edtKetQua)
+        val edtDeToan = dialogView.findViewById<EditText>(R.id.edtDeToan)
+        val edtDapAn = dialogView.findViewById<EditText>(R.id.edtDapAn)
+        val edtLop = dialogView.findViewById<EditText>(R.id.edtLop)
 
-        // Nếu bài hình đã có, điền thông tin vào các EditText
         if (baiHinh != null) {
-            edtExpression.setText(baiHinh.cau_hoi)
-            edtResult.setText(baiHinh.ket_qua.toString().toInt())
+            edtDeToan.setText(baiHinh.deToan)
+            edtDapAn.setText(baiHinh.dapAn.toString())
+            edtLop.setText(baiHinh.lop.toString())
         }
 
         AlertDialog.Builder(this)
             .setTitle(if (baiHinh == null) "Thêm mới" else "Chỉnh sửa")
             .setView(dialogView)
             .setPositiveButton("Lưu") { _, _ ->
-                val expression = edtExpression.text.toString()
-                val result = edtResult.text.toString().toInt()
+                val deToan = edtDeToan.text.toString()
+                val dapAn = edtDapAn.text.toString().toIntOrNull() ?: 0 // Kiểm tra và chuyển sang Int
+                val lop = edtLop.text.toString().toIntOrNull() ?: 0 // Kiểm tra và chuyển sang Int
 
-                // Nếu không có bài hình (tạo mới), thêm vào Firebase
                 if (baiHinh == null) {
-                    val id = database.push().key!!
-                    val newItem = BaiHinh(id, expression, result)
-                    database.child(id).setValue(newItem)
+                    val id = database.push().key?.toIntOrNull() ?: 0 // Lấy key từ Firebase và chuyển thành Int
+                    val newItem = BaiHinh(id, deToan, dapAn, lop)
+                    database.child(id.toString()).setValue(newItem) // Lưu với id là Int
                 } else {
-                    // Nếu có bài hình, chỉnh sửa và lưu lại
-                    val updated = BaiHinh(baiHinh.id, expression, result)
-                    database.child(baiHinh.id!!).setValue(updated)
+                    val updated = BaiHinh(baiHinh.id, deToan, dapAn, lop)
+                    database.child(baiHinh.id.toString()).setValue(updated) // Cập nhật theo id Int
                 }
             }
             .setNegativeButton("Hủy", null)
             .show()
     }
 
-    // Xóa bài hình từ Firebase
     private fun deleteItem(item: BaiHinh) {
-        database.child(item.id!!).removeValue()
+        database.child(item.id.toString()).removeValue() // Sử dụng id.toString() khi xóa
     }
 }

@@ -14,14 +14,16 @@ class BaiHinhAdapter(
 ) : RecyclerView.Adapter<BaiHinhAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvCauHoi = itemView.findViewById<TextView>(R.id.tvCauHoi)
-        val tvKetQua = itemView.findViewById<TextView>(R.id.tvKetQua)
+        val tvDeToan = itemView.findViewById<TextView>(R.id.edtDeToan)
+        val tvDapAn = itemView.findViewById<TextView>(R.id.edtDapAn)
+        val tvLop = itemView.findViewById<TextView>(R.id.edtLop)
         val btnEdit = itemView.findViewById<Button>(R.id.btnEdit)
         val btnDelete = itemView.findViewById<Button>(R.id.btnDelete)
 
         fun bind(item: BaiHinh) {
-            tvCauHoi.text = item.cau_hoi
-            tvKetQua.text = "Đáp án: ${item.ket_qua}"
+            tvDeToan.text = item.deToan
+            tvDapAn.text = "Đáp án: ${item.dapAn}"
+            tvLop.text = "Lớp: ${item.lop}"
             btnEdit.setOnClickListener { onEdit(item) }
             btnDelete.setOnClickListener { onDelete(item) }
         }

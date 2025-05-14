@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCalculations.setOnClickListener {
-            startActivity(Intent(this, Calculations::class.java))
+            startActivity(Intent(this, calculations2::class.java))
         }
 
         binding.btnUsers.setOnClickListener {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnBaiToan.setOnClickListener {
-            startActivity(Intent(this, bai_toan::class.java))
+            startActivity(Intent(this, bai_toan_cap2::class.java))
         }
 
         binding.btnBaiToanCap2.setOnClickListener {

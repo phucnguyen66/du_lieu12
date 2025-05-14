@@ -32,9 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#0000CC  "
-            android:textColor="@color/white"
+            android:text="Bài Toán Cấp 2"
 
-            android:text="Bài Toán Cấp 2" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btnBaiToanCap2"
@@ -108,13 +108,7 @@
             android:backgroundTint="#0000CC    "
             android:text="Dịch Vụ" />
 
-        <ImageView
-            android:id="@+id/imageBanner"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/nen" />
+
     </LinearLayout>
 
 </ScrollView>

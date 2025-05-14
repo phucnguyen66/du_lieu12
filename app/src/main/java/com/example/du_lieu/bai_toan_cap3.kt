@@ -24,6 +24,8 @@ class bai_toan_cap3 : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         baiHinhList = mutableListOf()
 
+
+
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         btnAdd.setOnClickListener {
             showDialogAddOrEdit(null)
@@ -31,12 +33,18 @@ class bai_toan_cap3 : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Lấy dữ liệu từ Firebase và xử lý
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 baiHinhList.clear()
                 for (data in snapshot.children) {
                     val item = data.getValue(BaiHinh::class.java)
-                    item?.id = data.key
+
+                    // Chuyển key và các trường dữ liệu từ Firebase thành kiểu Int
+                    item?.id = data.key?.toIntOrNull() ?: 0 // Chuyển key từ String sang Int
+                    item?.dapAn = item?.dapAn?.toString()?.toIntOrNull() ?: 0 // Chuyển dapAn thành Int
+                    item?.lop = item?.lop?.toString()?.toIntOrNull() ?: 0 // Chuyển lop thành Int
+
                     item?.let { baiHinhList.add(it) }
                 }
                 recyclerView.adapter = BaiHinhAdapter(baiHinhList,
@@ -51,28 +59,31 @@ class bai_toan_cap3 : AppCompatActivity() {
 
     private fun showDialogAddOrEdit(baiHinh: BaiHinh?) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_edit, null)
-        val edtCauHoi = dialogView.findViewById<EditText>(R.id.edtCauHoi)
-        val edtKetQua = dialogView.findViewById<EditText>(R.id.edtKetQua)
+        val edtDeToan = dialogView.findViewById<EditText>(R.id.edtDeToan)
+        val edtDapAn = dialogView.findViewById<EditText>(R.id.edtDapAn)
+        val edtLop = dialogView.findViewById<EditText>(R.id.edtLop)
 
         if (baiHinh != null) {
-            edtCauHoi.setText(baiHinh.cau_hoi)
-            edtKetQua.setText(baiHinh.ket_qua.toString())
+            edtDeToan.setText(baiHinh.deToan)
+            edtDapAn.setText(baiHinh.dapAn.toString())
+            edtLop.setText(baiHinh.lop.toString())
         }
 
         AlertDialog.Builder(this)
             .setTitle(if (baiHinh == null) "Thêm mới" else "Chỉnh sửa")
             .setView(dialogView)
             .setPositiveButton("Lưu") { _, _ ->
-                val cauHoi = edtCauHoi.text.toString()
-                val ketQua = edtKetQua.text.toString().toIntOrNull() ?: 0
+                val deToan = edtDeToan.text.toString()
+                val dapAn = edtDapAn.text.toString().toIntOrNull() ?: 0 // Kiểm tra và chuyển sang Int
+                val lop = edtLop.text.toString().toIntOrNull() ?: 0 // Kiểm tra và chuyển sang Int
 
                 if (baiHinh == null) {
-                    val id = database.push().key!!
-                    val newItem = BaiHinh(id, cauHoi,  ketQua)
-                    database.child(id).setValue(newItem)
+                    val id = database.push().key?.toIntOrNull() ?: 0 // Lấy key từ Firebase và chuyển thành Int
+                    val newItem = BaiHinh(id, deToan, dapAn, lop)
+                    database.child(id.toString()).setValue(newItem) // Lưu với id là Int
                 } else {
-                    val updated = BaiHinh(baiHinh.id, cauHoi, ketQua)
-                    database.child(baiHinh.id!!).setValue(updated)
+                    val updated = BaiHinh(baiHinh.id, deToan, dapAn, lop)
+                    database.child(baiHinh.id.toString()).setValue(updated) // Cập nhật theo id Int
                 }
             }
             .setNegativeButton("Hủy", null)
@@ -80,6 +91,6 @@ class bai_toan_cap3 : AppCompatActivity() {
     }
 
     private fun deleteItem(item: BaiHinh) {
-        database.child(item.id!!).removeValue()
+        database.child(item.id.toString()).removeValue() // Sử dụng id.toString() khi xóa
     }
 }

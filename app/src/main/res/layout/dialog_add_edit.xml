@@ -5,14 +5,21 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/edtCauHoi"
-        android:hint="Câu hỏi"
+        android:id="@+id/edtDeToan"
+        android:hint="Đề toán"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edtKetQua"
-        android:hint="Kết quả"
+        android:id="@+id/edtDapAn"
+        android:hint="Đáp án"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtLop"
+        android:hint="Lớp"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
